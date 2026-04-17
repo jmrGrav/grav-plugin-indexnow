@@ -1,0 +1,55 @@
+name: IndexNow
+slug: indexnow
+type: plugin
+version: 1.0.0
+description: Automatically submit modified pages to IndexNow (Bing/Yandex) on every save via onAdminAfterSave and onMcpAfterSave hooks.
+icon: paper-plane
+author:
+  name: Jm Rohmer
+  url: https://arleo.eu
+homepage: https://github.com/jmrGrav/grav-plugin-indexnow
+demo: https://arleo.eu/fr/grav-plugin-indexnow
+keywords: indexnow, seo, bing, yandex, search engine, indexing
+bugs: https://github.com/jmrGrav/grav-plugin-indexnow/issues
+docs: https://github.com/jmrGrav/grav-plugin-indexnow/blob/main/README.md
+license: MIT
+
+dependencies:
+  - { name: grav, version: '>=1.7.0' }
+
+form:
+  validation: strict
+  fields:
+
+    enabled:
+      type: toggle
+      label: Plugin activé
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+
+    key:
+      type: text
+      label: Clé API IndexNow
+      help: "La clé doit correspondre au fichier .txt hébergé à la racine du site."
+      placeholder: "bf6faf5563914fe7bb18d429976b182d"
+      validate:
+        required: true
+
+    host:
+      type: text
+      label: Nom de domaine
+      help: "Sans https:// ni slash final."
+      placeholder: "arleo.eu"
+      validate:
+        required: true
+
+    key_file:
+      type: text
+      label: URL du fichier clé (optionnel)
+      help: "Laisser vide pour utiliser https://{host}/{key}.txt automatiquement."
+      placeholder: "https://arleo.eu/bf6faf5563914fe7bb18d429976b182d.txt"
